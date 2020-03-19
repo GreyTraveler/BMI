@@ -15,8 +15,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   @override
   int plec = 0;
-  double maleOpacity = 1.0;
-  double femaleOpacity = 1.0;
+  double maleOpacity = 0.5;
+  double femaleOpacity = 0.5;
   void _changeOpacity() {
     setState(() {
       if (plec == 1) {
