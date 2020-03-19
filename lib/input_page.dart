@@ -4,6 +4,8 @@ import './Container.dart';
 
 const bottomcontainerheight = 80.0;
 const bottomcontainercolour = Color(0xFFa53a3b);
+const defaultcontainercolour = Color(0xFFf4e3b1);
+const inactivecontainercolour = Color(0xFFb0a994);
 
 class InputPage extends StatefulWidget {
   @override
@@ -12,6 +14,21 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   @override
+  int plec = 0;
+  double maleOpacity = 1.0;
+  double femaleOpacity = 1.0;
+  void _changeOpacity() {
+    setState(() {
+      if (plec == 1) {
+        maleOpacity = 1.0;
+        femaleOpacity = 0.5;
+      } else if (plec == 2) {
+        maleOpacity = 0.5;
+        femaleOpacity = 1.0;
+      }
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -23,18 +40,40 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: RepeatedContainer(
-                    childWidget: GenderIcon(
-                      ikona: 'assets/male.png',
-                      gender: 'MALE',
+                  child: GestureDetector(
+                    onTap: () {
+                      plec = 1;
+                      _changeOpacity();
+                    },
+                    child: AnimatedOpacity(
+                      duration: Duration(milliseconds: 45),
+                      opacity: maleOpacity,
+                      child: RepeatedContainer(
+                        colour: defaultcontainercolour,
+                        childWidget: GenderIcon(
+                          ikona: 'assets/male.png',
+                          gender: 'MALE',
+                        ),
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: RepeatedContainer(
-                    childWidget: GenderIcon(
-                      gender: 'FEMALE',
-                      ikona: 'assets/female.png',
+                  child: GestureDetector(
+                    onTap: () {
+                      plec = 2;
+                      _changeOpacity();
+                    },
+                    child: AnimatedOpacity(
+                      duration: Duration(milliseconds: 45),
+                      opacity: femaleOpacity,
+                      child: RepeatedContainer(
+                        colour: defaultcontainercolour,
+                        childWidget: GenderIcon(
+                          gender: 'FEMALE',
+                          ikona: 'assets/female.png',
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -42,16 +81,22 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: RepeatedContainer(),
+            child: RepeatedContainer(
+              colour: defaultcontainercolour,
+            ),
           ),
           Expanded(
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: RepeatedContainer(),
+                  child: RepeatedContainer(
+                    colour: defaultcontainercolour,
+                  ),
                 ),
                 Expanded(
-                  child: RepeatedContainer(),
+                  child: RepeatedContainer(
+                    colour: defaultcontainercolour,
+                  ),
                 ),
               ],
             ),
