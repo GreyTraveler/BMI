@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matibmi/Constants.dart';
 
 class GenderIcon extends StatelessWidget {
   @override
@@ -19,10 +20,7 @@ class GenderIcon extends StatelessWidget {
         ),
         Text(
           gender,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: labelTextStyle,
         ),
       ],
     );

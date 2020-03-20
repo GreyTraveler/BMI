@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import './GenderIcon.dart';
 import './Container.dart';
-
-const bottomcontainerheight = 80.0;
-const bottomcontainercolour = Color(0xFFa53a3b);
-const defaultcontainercolour = Color(0xFFf4e3b1);
-const inactivecontainercolour = Color(0xFFb0a994);
+import './Constants.dart';
 
 enum Gender {
   male,
@@ -75,6 +71,10 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: RepeatedContainer(
               colour: defaultcontainercolour,
+              childWidget: Text(
+                'HEIGHT',
+                style: labelTextStyle,
+              ),
             ),
           ),
           Expanded(
