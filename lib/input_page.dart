@@ -32,43 +32,39 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
-                    child: AnimatedOpacity(
-                      duration: Duration(milliseconds: 45),
-                      opacity: selectedGender == Gender.male
-                          ? 1.0
-                          : 0.5, // if wybrana płeć to male to ustaw 1 else 0.5
-                      child: RepeatedContainer(
-                        colour: defaultcontainercolour,
-                        childWidget: GenderIcon(
-                          ikona: 'assets/male.png',
-                          gender: 'MALE',
-                        ),
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 45),
+                    opacity: selectedGender == Gender.male
+                        ? 1.0
+                        : 0.5, // if wybrana płeć to male to ustaw 1 else 0.5
+                    child: RepeatedContainer(
+                      onPressed: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      },
+                      colour: defaultcontainercolour,
+                      childWidget: GenderIcon(
+                        ikona: 'assets/male.png',
+                        gender: 'MALE',
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = Gender.female;
-                      });
-                    },
-                    child: AnimatedOpacity(
-                      duration: Duration(milliseconds: 45),
-                      opacity: selectedGender == Gender.female ? 1.0 : 0.5,
-                      child: RepeatedContainer(
-                        colour: defaultcontainercolour,
-                        childWidget: GenderIcon(
-                          gender: 'FEMALE',
-                          ikona: 'assets/female.png',
-                        ),
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 45),
+                    opacity: selectedGender == Gender.female ? 1.0 : 0.5,
+                    child: RepeatedContainer(
+                      onPressed: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      },
+                      colour: defaultcontainercolour,
+                      childWidget: GenderIcon(
+                        gender: 'FEMALE',
+                        ikona: 'assets/female.png',
                       ),
                     ),
                   ),
