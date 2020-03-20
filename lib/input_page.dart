@@ -7,6 +7,11 @@ const bottomcontainercolour = Color(0xFFa53a3b);
 const defaultcontainercolour = Color(0xFFf4e3b1);
 const inactivecontainercolour = Color(0xFFb0a994);
 
+enum Gender {
+  male,
+  female,
+}
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -14,15 +19,14 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   @override
-  int plec = 0;
   double maleOpacity = 0.5;
   double femaleOpacity = 0.5;
-  void _changeOpacity() {
+  void _changeOpacity(Gender selectedGender) {
     setState(() {
-      if (plec == 1) {
+      if (selectedGender == Gender.male) {
         maleOpacity = 1.0;
         femaleOpacity = 0.5;
-      } else if (plec == 2) {
+      } else if (selectedGender == Gender.female) {
         maleOpacity = 0.5;
         femaleOpacity = 1.0;
       }
@@ -42,8 +46,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      plec = 1;
-                      _changeOpacity();
+                      _changeOpacity(Gender.male);
                     },
                     child: AnimatedOpacity(
                       duration: Duration(milliseconds: 45),
@@ -61,8 +64,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      plec = 2;
-                      _changeOpacity();
+                      _changeOpacity(Gender.female);
                     },
                     child: AnimatedOpacity(
                       duration: Duration(milliseconds: 45),
