@@ -19,19 +19,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   @override
-  double maleOpacity = 0.5;
-  double femaleOpacity = 0.5;
-  void _changeOpacity(Gender selectedGender) {
-    setState(() {
-      if (selectedGender == Gender.male) {
-        maleOpacity = 1.0;
-        femaleOpacity = 0.5;
-      } else if (selectedGender == Gender.female) {
-        maleOpacity = 0.5;
-        femaleOpacity = 1.0;
-      }
-    });
-  }
+  Gender selectedGender;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +34,15 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      _changeOpacity(Gender.male);
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
                     },
                     child: AnimatedOpacity(
                       duration: Duration(milliseconds: 45),
-                      opacity: maleOpacity,
+                      opacity: selectedGender == Gender.male
+                          ? 1.0
+                          : 0.5, // if wybrana płeć to male to ustaw 1 else 0.5
                       child: RepeatedContainer(
                         colour: defaultcontainercolour,
                         childWidget: GenderIcon(
@@ -64,11 +56,13 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      _changeOpacity(Gender.female);
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
                     },
                     child: AnimatedOpacity(
                       duration: Duration(milliseconds: 45),
-                      opacity: femaleOpacity,
+                      opacity: selectedGender == Gender.female ? 1.0 : 0.5,
                       child: RepeatedContainer(
                         colour: defaultcontainercolour,
                         childWidget: GenderIcon(
