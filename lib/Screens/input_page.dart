@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:matibmi/Screens/ResultsScreen.dart';
 import '../Components/GenderIcon.dart';
 import '../Components/Container.dart';
-import '../Components/Constants.dart';
+import '../Constants.dart';
 import '../Components/RoundIconButton.dart';
 import '../Components/BottomButton.dart';
+import 'package:matibmi/Calculator.dart';
 
 enum Gender {
   male,
@@ -194,7 +196,26 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             'CALCULATE MY BMI !',
             () {
-              Navigator.pushNamed(context, '/results');
+              if (selectedGender != null) {
+                Calculator calculation =
+                    Calculator(height: height, weight: weight);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Results(
+                      bmiresults: calculation.calculateBmi(),
+                      resultText: calculation.getResult(),
+                      interpretation: calculation.getInterpretation(),
+                    ),
+                  ),
+                );
+              } else
+                (showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    title: Text('Choose gender first!'),
+                  ),
+                ));
             },
           )
         ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:matibmi/Components/Constants.dart';
+import 'package:matibmi/Constants.dart';
 
 class GenderIcon extends StatelessWidget {
   @override

@@ -27,7 +27,7 @@ final kLargeButton = TextStyle(
 
 final kresulttext = TextStyle(
   color: kIconColor,
-  fontSize: 25,
+  fontSize: 30,
 );
 
 final kresultnumber = TextStyle(

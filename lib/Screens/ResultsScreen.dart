@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Components/Constants.dart';
+import '../Constants.dart';
 import '../Components/Container.dart';
 import '../Components/BottomButton.dart';
 
 class Results extends StatelessWidget {
+  Results(
+      {@required this.bmiresults,
+      @required this.resultText,
+      @required this.interpretation});
+
+  final String bmiresults;
+  final String resultText;
+  final String interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +29,7 @@ class Results extends StatelessWidget {
               child: Center(
                 child: Container(
                   child: Text(
-                    'YOU RESULT',
+                    'YOUR RESULT!',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 45.0,
@@ -38,15 +47,15 @@ class Results extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Text(
-                      'Wynik',
+                      resultText,
                       style: kresulttext,
                     ),
                     Text(
-                      'Cyfra',
+                      bmiresults,
                       style: kresultnumber,
                     ),
                     Text(
-                      'Komentarz',
+                      interpretation,
                       style: kresulttext,
                     ),
                   ],

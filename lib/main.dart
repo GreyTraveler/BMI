@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:matibmi/Calculator.dart';
 import 'package:matibmi/Screens/ResultsScreen.dart';
 
 import 'Screens/input_page.dart';
@@ -11,10 +12,7 @@ class BMICalculator extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
-      routes: {
-        '/': (context) => InputPage(),
-        '/results': (context) => Results(),
-      },
+      home: InputPage(),
       theme: ThemeData(
           primaryColor: Color(0xFF5398d9),
           accentColor: Color(0xFFd96b0c),
