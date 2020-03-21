@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import './GenderIcon.dart';
 import './Container.dart';
 import './Constants.dart';
+import './RoundIconButton.dart';
+import './ResultsScreen.dart';
 
 enum Gender {
   male,
@@ -18,6 +20,8 @@ class _InputPageState extends State<InputPage> {
   @override
   Gender selectedGender;
   int height = 170;
+  int weight = 60;
+  int age = 20;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,16 +100,18 @@ class _InputPageState extends State<InputPage> {
                         ),
                       ],
                     ),
-                    Slider(
-                      activeColor: Color(0xFFd96b0c),
-                      value: height.toDouble(),
-                      min: 100,
-                      max: 250,
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.toInt();
-                        });
-                      },
+                    SliderTheme(
+                      data: kSliderTheme,
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 100,
+                        max: 250,
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.toInt();
+                          });
+                        },
+                      ),
                     ),
                   ],
                 )),
@@ -116,11 +122,70 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: RepeatedContainer(
                     colour: kDefaultcontainercolour,
+                    childWidget: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(weight.toString(), style: kNumberStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              Icons.remove,
+                              () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(Icons.add, () {
+                              setState(() {
+                                weight++;
+                              });
+                            }),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: RepeatedContainer(
                     colour: kDefaultcontainercolour,
+                    childWidget: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(age.toString(), style: kNumberStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(Icons.remove, () {
+                              setState(() {
+                                age--;
+                              });
+                            }),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(Icons.add, () {
+                              setState(() {
+                                age++;
+                              });
+                            }),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -131,6 +196,19 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
             height: kBottomcontainerheight,
+            child: FlatButton(
+              child: Text(
+                'CALCULATE MY BMI !',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/results');
+              },
+            ),
           )
         ],
       ),
