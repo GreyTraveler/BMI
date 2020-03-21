@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './GenderIcon.dart';
-import './Container.dart';
-import './Constants.dart';
-import './RoundIconButton.dart';
-import './ResultsScreen.dart';
+import '../Components/GenderIcon.dart';
+import '../Components/Container.dart';
+import '../Components/Constants.dart';
+import '../Components/RoundIconButton.dart';
+import '../Components/BottomButton.dart';
 
 enum Gender {
   male,
@@ -191,24 +191,11 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomcontainercolour,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: kBottomcontainerheight,
-            child: FlatButton(
-              child: Text(
-                'CALCULATE MY BMI !',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/results');
-              },
-            ),
+          BottomButton(
+            'CALCULATE MY BMI !',
+            () {
+              Navigator.pushNamed(context, '/results');
+            },
           )
         ],
       ),

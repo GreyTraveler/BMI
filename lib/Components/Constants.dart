@@ -18,3 +18,20 @@ final kSliderTheme = SliderThemeData(
   thumbColor: kButtonColour,
   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 11.0),
 );
+
+final kLargeButton = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: kDefaultcontainercolour,
+);
+
+final kresulttext = TextStyle(
+  color: kIconColor,
+  fontSize: 25,
+);
+
+final kresultnumber = TextStyle(
+  color: Color(0xFFd96b0c),
+  fontWeight: FontWeight.bold,
+  fontSize: 60,
+);
