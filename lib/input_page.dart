@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './GenderIcon.dart';
 import './Container.dart';
@@ -16,6 +17,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   @override
   Gender selectedGender;
+  int height = 170;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +25,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
@@ -39,7 +42,7 @@ class _InputPageState extends State<InputPage> {
                           selectedGender = Gender.male;
                         });
                       },
-                      colour: defaultcontainercolour,
+                      colour: kDefaultcontainercolour,
                       childWidget: GenderIcon(
                         ikona: 'assets/male.png',
                         gender: 'MALE',
@@ -57,7 +60,7 @@ class _InputPageState extends State<InputPage> {
                           selectedGender = Gender.female;
                         });
                       },
-                      colour: defaultcontainercolour,
+                      colour: kDefaultcontainercolour,
                       childWidget: GenderIcon(
                         gender: 'FEMALE',
                         ikona: 'assets/female.png',
@@ -70,34 +73,64 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: RepeatedContainer(
-              colour: defaultcontainercolour,
-              childWidget: Text(
-                'HEIGHT',
-                style: labelTextStyle,
-              ),
-            ),
+                colour: kDefaultcontainercolour,
+                childWidget: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'HEIGHT',
+                      style: kLabelTextStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(
+                          height.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Text(
+                          ' cm',
+                          style: kLabelTextStyle,
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      activeColor: Color(0xFFd96b0c),
+                      value: height.toDouble(),
+                      min: 100,
+                      max: 250,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.toInt();
+                        });
+                      },
+                    ),
+                  ],
+                )),
           ),
           Expanded(
             child: Row(
               children: <Widget>[
                 Expanded(
                   child: RepeatedContainer(
-                    colour: defaultcontainercolour,
+                    colour: kDefaultcontainercolour,
                   ),
                 ),
                 Expanded(
                   child: RepeatedContainer(
-                    colour: defaultcontainercolour,
+                    colour: kDefaultcontainercolour,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomcontainercolour,
+            color: kBottomcontainercolour,
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
-            height: bottomcontainerheight,
+            height: kBottomcontainerheight,
           )
         ],
       ),
